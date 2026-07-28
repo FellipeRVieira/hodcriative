@@ -977,16 +977,18 @@
     transform:scale(1.34);
   }
 
-  .video-wrapper{
+.video-wrapper{
     position:relative;
     width:100%;
     overflow:hidden;
 }
 
+/* A proporção agora vem de --ratio, definida inline em cada vídeo.
+   66.66% se nada for informado (fallback). */
 .video-wrapper::before{
     content:"";
     display:block;
-    padding-top:66.66%; /* 3:2 */
+    padding-top:var(--ratio, 66.66%);
 }
 
 .video-wrapper iframe{
@@ -995,11 +997,14 @@
     width:100%;
     height:100%;
     border:0;
-
-    transform:scale(1.25);
     transition:transform .7s var(--ease);
-
     pointer-events:none;
+}
+
+/* O scale(1.25) era só pra "esconder" a barra do player em modo background.
+   Vira uma classe opcional, só pra quem precisar disso. */
+.video-wrapper.crop iframe{
+    transform:scale(1.25);
 }
 
   .overlay .tag {
