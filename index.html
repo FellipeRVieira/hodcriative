@@ -178,6 +178,7 @@
 
                 <div class="about-visual reveal">
                     <div class="stack-img s1"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80" alt="Câmera profissional"></div>
+                    <div class="stack-img s1"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80" alt="Câmera profissional"></div>
                     <div class="stack-img s2"><img src="https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&w=600&q=80" alt="Fotógrafo em ação"></div>
                     <div class="stack-img s3"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Notebook com website"></div>
                     <div class="stack-img s4"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80" alt="Bastidores de gravação"></div>
@@ -311,11 +312,11 @@
                     </div>
 
                 <div class="proj-item reveal" style="height:230px;">
-                    <img src="https://images.unsplash.com/photo-1519671482749-fd09be6ccd6c?auto=format&fit=crop&w=700&q=80" alt="Ensaio fotográfico" style="height:100%;object-fit:cover;">
+                    <img src="IMG/isabel.jpeg" alt="Ensaio fotográfico" style="height:150%;object-fit:cover;">
                     
                     <div class="overlay">
                         <span class="tag">Fotografia</span>
-                        <h5>Ensaio Editorial — Studio Lume</h5>
+                        <h5>Celebração — Chá de Lingerie</h5>
                         <a class="view-btn" href="#">Ver Projeto</a>
                     </div>
 
@@ -350,22 +351,22 @@
                 </div>
 
                 <div class="proj-item reveal" style="height:210px;">
-                    <img src="https://images.unsplash.com/photo-1487147264018-f937fba0c817?auto=format&fit=crop&w=700&q=80" alt="Portfólio" style="height:100%;object-fit:cover;">
+                    <img src="IMG/madu.jpeg" alt="Portfólio" style="height:100%;object-fit:cover;">
                     
                     <div class="overlay">
                         <span class="tag">Portfólio</span>
-                        <h5>Portfólio — Fotógrafa Lia Martins</h5>
+                        <h5>Portfólio — Madu</h5>
                         <a class="view-btn" href="#">Ver Projeto</a>
                     </div>
 
                 </div>
 
                 <div class="proj-item reveal" style="height:320px;">
-                    <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=700&q=80" alt="Produto" style="height:100%;object-fit:cover;">
+                    <img src="IMG/formatura.jpeg" alt="Produto" style="height:100%;object-fit:cover;">
                     
                     <div class="overlay">
                         <span class="tag">Fotografia</span>
-                        <h5>Still de Produto — Casa Verbena</h5>
+                        <h5>Formatura — IFES</h5>
                         <a class="view-btn" href="#">Ver Projeto</a>
                     </div>
 
@@ -500,7 +501,7 @@
 
                         <div>
                             <h5>WhatsApp</h5>
-                            <p>(27) 99999-0000</p>
+                            <p>(27) 99748-6896</p>
                         </div>
 
                     </div>
@@ -554,17 +555,17 @@
                     </div>
                 </div>
 
-                <form class="form-card reveal" onsubmit="event.preventDefault(); this.querySelector('.btn').textContent='Mensagem enviada ✓';">
+                <form class="form-card reveal" id="contactForm">
                     <div class="form-row">
 
                         <div class="field">
                             <label>Nome</label>
-                            <input type="text" placeholder="Seu nome completo" required>
+                            <input type="text" name="nome" placeholder="Seu nome completo" required>
                         </div>
 
                         <div class="field">
                             <label>Empresa</label>
-                            <input type="text" placeholder="Nome da empresa">
+                            <input type="text" name="empresa" placeholder="Nome da empresa">
                         </div>
 
                     </div>
@@ -573,12 +574,12 @@
 
                         <div class="field">
                             <label>Telefone</label>
-                            <input type="tel" placeholder="(00) 00000-0000">
+                            <input type="tel" name="telefone" placeholder="(00) 00000-0000">
                         </div>
 
                         <div class="field">
                             <label>Email</label>
-                            <input type="email" placeholder="voce@email.com" required>
+                            <input type="email" name="email" placeholder="voce@email.com" required>
                         </div>
 
                     </div>
@@ -587,7 +588,7 @@
 
                         <div class="field full">
                             <label>Serviço desejado</label>
-                            <select>
+                            <select name="servico">
                                 <option>Produção Audiovisual</option>
                                 <option>Fotografia</option>
                                 <option>Desenvolvimento Web</option>
@@ -603,12 +604,12 @@
 
                         <div class="field full">
                             <label>Mensagem</label>
-                            <textarea placeholder="Conte um pouco sobre o seu projeto..."></textarea>
+                            <textarea name="mensagem" placeholder="Conte um pouco sobre o seu projeto..."></textarea>
                         </div>
 
                     </div>
 
-                    <button class="btn btn-primary">Enviar mensagem</button>
+                    <button class="btn btn-primary" type="submit">Enviar mensagem</button>
                 </form>
                 
             </div>
@@ -625,14 +626,15 @@
                 <div class="footer-brand">
 
                     <a href="#home" class="logo">
-                        <span class="h-o-d">
+                    <!--    <span class="h-o-d">
                             H
                             <span class="o">O</span>
                             D
                         </span>
                         <span class="small" style="color:rgba(255,255,255,0.5);">
                             creative
-                        </span>
+                        </span>-->
+                         <img src="IMG/Logo_2.svg" alt="HOD Creative">
                     </a>
 
                     <p>Criamos conexões. Contamos histórias. Produção audiovisual, fotografia e experiências digitais.</p>
@@ -737,6 +739,26 @@
         window.addEventListener('scroll', () => {
             const y = window.scrollY;
             if(heroBox) heroBox.style.transform = `translateY(${y * 0.08}px)`;
+        });
+
+        // Encaminha os dados do formulário para o WhatsApp da HOD Creative.
+        const contactForm = document.getElementById('contactForm');
+        contactForm?.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const data = new FormData(contactForm);
+            const message = [
+                'Olá! Gostaria de solicitar um orçamento.',
+                '',
+                `Nome: ${data.get('nome')}`,
+                `Empresa: ${data.get('empresa') || 'Não informada'}`,
+                `Telefone: ${data.get('telefone') || 'Não informado'}`,
+                `E-mail: ${data.get('email')}`,
+                `Serviço desejado: ${data.get('servico')}`,
+                `Mensagem: ${data.get('mensagem') || 'Não informada'}`
+            ].join('\n');
+
+            window.open(`https://wa.me/5527997486896?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
         });
     </script>
 

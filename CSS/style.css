@@ -523,9 +523,9 @@
   }
 
   .about-card:hover {
-    box-shadow:var(--shadow-md); 
+    box-shadow:0 16px 34px rgba(245,124,50,.16);
     transform:translateY(-4px); 
-    border-color:transparent;
+    border-color:var(--orange);
 }
 
   .about-card .num {
@@ -827,7 +827,9 @@
   .diff-grid {
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:1px;background:var(--line); 
+    gap:12px;
+    padding:12px;
+    background:#FFF0E3;
     border-radius:var(--radius); 
     overflow:hidden;
 }
@@ -836,12 +838,28 @@
     background:#fff; 
     padding:44px 30px; 
     text-align:left; 
-    transition:background .4s;
-}
+    position:relative;
+    overflow:hidden;
+    border-radius:var(--radius-sm);
+  }
 
-  .diff-card:hover {
-    background:var(--off-white);
-}
+  .diff-card::before {
+    content:"";
+    position:absolute;
+    background:var(--orange);
+    transition:.5s ease;
+  }
+
+  .diff-card::before {
+    top:0;
+    left:0;
+    width:0;
+    height:3px;
+  }
+
+  .diff-card:hover::before {
+    width:100%;
+  }
 
   .diff-icon {
     width:46px;
@@ -1017,7 +1035,9 @@
 
   /* ---------- FOOTER ---------- */
   footer {
-    background:#1B222D; 
+    background:
+      radial-gradient(circle at 92% 8%, rgba(240, 99, 12, 0.28), transparent 34%),
+      linear-gradient(118deg, #1D3344 0%, #365F78 53%, #A95F3A 100%);
     color:#fff; 
     padding:80px 0 30px;
 }
@@ -1027,19 +1047,28 @@
     grid-template-columns:1.4fr 1fr 1fr 1fr;
     gap:40px; 
     padding-bottom:56px; 
-    border-bottom:1px solid rgba(255,255,255,0.1);
+    border-bottom:1px solid rgba(255,255,255,0.28);
 }
   
   .footer-brand .logo {
     color:#fff;
-}
+    display:inline-flex;
+    max-width:100%;
+  }
+
+  .footer-brand .logo img {
+    width:clamp(104px, 13vw, 148px);
+    max-width:100%;
+    height:auto;
+    max-height:none;
+  }
   
   .footer-brand .logo .o {
     color:var(--blue);
 }
   
   .footer-brand p {
-    color:rgba(255,255,255,0.55); 
+    color:rgba(255,255,255,0.88); 
     font-size:14px; 
     margin-top:16px; 
     max-width:280px; 
@@ -1050,7 +1079,7 @@
     font-size:13px;
     text-transform:uppercase;
     letter-spacing:.08em;
-    color:rgba(255,255,255,0.45); 
+    color:rgba(255,255,255,0.78); 
     margin-bottom:18px;
 }
   
@@ -1060,7 +1089,7 @@
   
   .footer-col ul li a {
     font-size:14.5px;
-    color:rgba(255,255,255,0.8); 
+    color:rgba(255,255,255,0.96); 
     transition:color .3s;
 }
   
@@ -1078,7 +1107,7 @@
     width:38px;
     height:38px;
     border-radius:50%;
-    background:rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.16);
     display:flex;
     align-items:center;
     justify-content:center; 
@@ -1106,7 +1135,7 @@
   
   .footer-bottom p {
     font-size:13px;
-    color:rgba(255,255,255,0.4);
+    color:rgba(255,255,255,0.78);
 }
 
   /* ---------- RESPONSIVE ---------- */
