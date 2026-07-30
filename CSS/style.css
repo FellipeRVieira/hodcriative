@@ -579,82 +579,11 @@ header.scrolled .burger span{background:var(--ink);}
 }
 .proj-item.filtered-out{display:none;}
 
-/* Distinção visual por categoria — efeito "ambilight" (fita de LED atrás da TV):
-   glow difuso ao redor de toda a foto, pulsando bem devagar como uma luz viva. */
-.proj-item[data-category="audiovisual"]{
-    box-shadow:
-        0 0 0 1px rgba(245,124,50,0.15),
-        0 0 26px 4px rgba(245,124,50,0.45),
-        0 0 60px 14px rgba(245,124,50,0.32),
-        0 0 110px 26px rgba(245,124,50,0.16),
-        0 20px 50px rgba(245,124,50,0.22);
-    animation:ledGlowOrange 4.5s ease-in-out infinite;
-}
-.proj-item[data-category="web"]{
-    box-shadow:
-        0 0 0 1px rgba(92,134,163,0.18),
-        0 0 26px 4px rgba(92,134,163,0.5),
-        0 0 60px 14px rgba(92,134,163,0.34),
-        0 0 110px 26px rgba(92,134,163,0.18),
-        0 20px 50px rgba(92,134,163,0.26);
-    animation:ledGlowBlue 4.5s ease-in-out infinite;
-}
-.proj-item[data-category="audiovisual"]:hover{
-    box-shadow:
-        0 0 0 1px rgba(245,124,50,0.25),
-        0 0 34px 6px rgba(245,124,50,0.6),
-        0 0 76px 18px rgba(245,124,50,0.4),
-        0 0 130px 32px rgba(245,124,50,0.2),
-        0 20px 50px rgba(245,124,50,0.28);
-}
-.proj-item[data-category="web"]:hover{
-    box-shadow:
-        0 0 0 1px rgba(92,134,163,0.28),
-        0 0 34px 6px rgba(92,134,163,0.65),
-        0 0 76px 18px rgba(92,134,163,0.42),
-        0 0 130px 32px rgba(92,134,163,0.22),
-        0 20px 50px rgba(92,134,163,0.3);
-}
-
-@keyframes ledGlowOrange{
-    0%,100% {
-        box-shadow:
-            0 0 0 1px rgba(245,124,50,0.15),
-            0 0 26px 4px rgba(245,124,50,0.45),
-            0 0 60px 14px rgba(245,124,50,0.32),
-            0 0 110px 26px rgba(245,124,50,0.16),
-            0 20px 50px rgba(245,124,50,0.22);
-    }
-    50% {
-        box-shadow:
-            0 0 0 1px rgba(245,124,50,0.22),
-            0 0 32px 6px rgba(245,124,50,0.58),
-            0 0 74px 18px rgba(245,124,50,0.4),
-            0 0 130px 30px rgba(245,124,50,0.2),
-            0 20px 50px rgba(245,124,50,0.24);
-    }
-}
-@keyframes ledGlowBlue{
-    0%,100% {
-        box-shadow:
-            0 0 0 1px rgba(92,134,163,0.18),
-            0 0 26px 4px rgba(92,134,163,0.5),
-            0 0 60px 14px rgba(92,134,163,0.34),
-            0 0 110px 26px rgba(92,134,163,0.18),
-            0 20px 50px rgba(92,134,163,0.26);
-    }
-    50% {
-        box-shadow:
-            0 0 0 1px rgba(92,134,163,0.25),
-            0 0 32px 6px rgba(92,134,163,0.62),
-            0 0 74px 18px rgba(92,134,163,0.42),
-            0 0 130px 30px rgba(92,134,163,0.22),
-            0 20px 50px rgba(92,134,163,0.28);
-    }
-}
-@media (prefers-reduced-motion: reduce){
-    .proj-item[data-category="audiovisual"], .proj-item[data-category="web"]{ animation:none; }
-}
+/* Distinção visual por categoria — no modo claro mantém uma sombra discreta;
+   o efeito "ambilight" (fita de LED) só aparece no tema escuro (ver bloco
+   TEMA ESCURO mais abaixo). */
+.proj-item[data-category="audiovisual"]{box-shadow:0 20px 50px rgba(245,124,50,0.22);}
+.proj-item[data-category="web"]{box-shadow:0 20px 50px rgba(92,134,163,0.26);}
 
 .proj-item .cat-badge{
     position:absolute;top:14px;left:14px;z-index:2;font-size:10.5px;font-weight:700;
@@ -1014,6 +943,84 @@ html[data-theme="dark"] .projects{
 }
 html[data-theme="dark"] .filter-btn{color:var(--ink-soft);}
 html[data-theme="dark"] .filter-btn:hover{color:var(--orange-soft);}
+
+/* Efeito "ambilight" (fita de LED atrás da TV) nas fotos do mosaico —
+   exclusivo do tema escuro, onde o glow se destaca de verdade contra o fundo. */
+html[data-theme="dark"] .proj-item[data-category="audiovisual"]{
+    box-shadow:
+        0 0 0 1px rgba(245,124,50,0.15),
+        0 0 26px 4px rgba(245,124,50,0.45),
+        0 0 60px 14px rgba(245,124,50,0.32),
+        0 0 110px 26px rgba(245,124,50,0.16),
+        0 20px 50px rgba(245,124,50,0.22);
+    animation:ledGlowOrange 4.5s ease-in-out infinite;
+}
+html[data-theme="dark"] .proj-item[data-category="web"]{
+    box-shadow:
+        0 0 0 1px rgba(92,134,163,0.18),
+        0 0 26px 4px rgba(92,134,163,0.5),
+        0 0 60px 14px rgba(92,134,163,0.34),
+        0 0 110px 26px rgba(92,134,163,0.18),
+        0 20px 50px rgba(92,134,163,0.26);
+    animation:ledGlowBlue 4.5s ease-in-out infinite;
+}
+html[data-theme="dark"] .proj-item[data-category="audiovisual"]:hover{
+    box-shadow:
+        0 0 0 1px rgba(245,124,50,0.25),
+        0 0 34px 6px rgba(245,124,50,0.6),
+        0 0 76px 18px rgba(245,124,50,0.4),
+        0 0 130px 32px rgba(245,124,50,0.2),
+        0 20px 50px rgba(245,124,50,0.28);
+}
+html[data-theme="dark"] .proj-item[data-category="web"]:hover{
+    box-shadow:
+        0 0 0 1px rgba(92,134,163,0.28),
+        0 0 34px 6px rgba(92,134,163,0.65),
+        0 0 76px 18px rgba(92,134,163,0.42),
+        0 0 130px 32px rgba(92,134,163,0.22),
+        0 20px 50px rgba(92,134,163,0.3);
+}
+
+@keyframes ledGlowOrange{
+    0%,100% {
+        box-shadow:
+            0 0 0 1px rgba(245,124,50,0.15),
+            0 0 26px 4px rgba(245,124,50,0.45),
+            0 0 60px 14px rgba(245,124,50,0.32),
+            0 0 110px 26px rgba(245,124,50,0.16),
+            0 20px 50px rgba(245,124,50,0.22);
+    }
+    50% {
+        box-shadow:
+            0 0 0 1px rgba(245,124,50,0.22),
+            0 0 32px 6px rgba(245,124,50,0.58),
+            0 0 74px 18px rgba(245,124,50,0.4),
+            0 0 130px 30px rgba(245,124,50,0.2),
+            0 20px 50px rgba(245,124,50,0.24);
+    }
+}
+@keyframes ledGlowBlue{
+    0%,100% {
+        box-shadow:
+            0 0 0 1px rgba(92,134,163,0.18),
+            0 0 26px 4px rgba(92,134,163,0.5),
+            0 0 60px 14px rgba(92,134,163,0.34),
+            0 0 110px 26px rgba(92,134,163,0.18),
+            0 20px 50px rgba(92,134,163,0.26);
+    }
+    50% {
+        box-shadow:
+            0 0 0 1px rgba(92,134,163,0.25),
+            0 0 32px 6px rgba(92,134,163,0.62),
+            0 0 74px 18px rgba(92,134,163,0.42),
+            0 0 130px 30px rgba(92,134,163,0.22),
+            0 20px 50px rgba(92,134,163,0.28);
+    }
+}
+@media (prefers-reduced-motion: reduce){
+    html[data-theme="dark"] .proj-item[data-category="audiovisual"],
+    html[data-theme="dark"] .proj-item[data-category="web"]{ animation:none; }
+}
 
 /* Diferenciais */
 html[data-theme="dark"] .diff{background:var(--off-white);}
