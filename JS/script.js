@@ -259,3 +259,39 @@ contactForm?.addEventListener('submit', (event) => {
 
     window.open(`https://wa.me/5527997486896?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
 });
+
+// ---------- Parallax suave para glows fora do Hero ----------
+const softGlows = document.querySelectorAll(
+    '.about-bg .glow, .projects-bg span, .contact-bg span'
+);
+
+function renderSoftParallax() {
+    const vh = window.innerHeight;
+    softGlows.forEach((glow, i) => {
+        const rect = glow.parentElement.getBoundingClientRect();
+        // progresso de 0 a 1 conforme a seção passa pela tela
+        const progress = 1 - (rect.top + rect.height / 2) / (vh + rect.height);
+        const depth = 40 + (i % 3) * 20; // varia um pouco por elemento
+        const offset = (progress - 0.5) * depth;
+        glow.style.transform = `translate3d(0, ${offset}px, 0)`;
+    });
+}
+
+window.addEventListener('scroll', () => {
+    if (!prefersReducedMotion) renderSoftParallax();
+});
+window.addEventListener('load', renderSoftParallax);
+
+
+[['projetos', 'projects-spotlight'], ['contato', 'contact-spotlight']].forEach(([sectionId, spotClass]) => {
+    const section = document.getElementById(sectionId);
+    const spot = section?.querySelector(`.${spotClass}`);
+    if (!section || !spot || prefersReducedMotion || isTouch) return;
+    section.addEventListener('mousemove', (e) => {
+        const rect = section.getBoundingClientRect();
+        spot.style.setProperty('--spotX', `${e.clientX - rect.left}px`);
+        spot.style.setProperty('--spotY', `${e.clientY - rect.top}px`);
+        spot.style.opacity = '1';
+    });
+    section.addEventListener('mouseleave', () => spot.style.opacity = '0');
+});
