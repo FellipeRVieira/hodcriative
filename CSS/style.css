@@ -5,6 +5,7 @@
     --orange-soft:#FBAE79;
     --blue:#A9C9DC;
     --blue-deep:#5C86A3;
+    --blue-soft:#CFE6F2;
     --ink:#20293A;
     --ink-soft:#5B6472;
     --line: rgba(32,41,58,0.08);
@@ -14,6 +15,15 @@
     --radius: 24px;
     --radius-sm: 14px;
     --ease: cubic-bezier(.16,.84,.44,1);
+
+    /* Paleta escura / cinematográfica usada nos fundos de destaque (Hero, Serviços) */
+    --ink-950:#080B12;
+    --ink-900:#0E1420;
+    --ink-850:#151F30;
+    --ink-800:#1C2A40;
+    --on-dark:#F5F7FA;
+    --on-dark-soft:rgba(245,247,250,0.7);
+    --on-dark-faint:rgba(245,247,250,0.5);
   }
 
   * {
@@ -99,6 +109,34 @@
     flex:none;
   }
 
+  /* ---------- TEXTURA DE GRAIN GLOBAL ---------- */
+  /* Uma camada sutil de "grão de filme" sobre toda a página, reforçando a
+     linguagem cinematográfica da marca sem comprometer a leitura do conteúdo. */
+  .grain-overlay {
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    pointer-events:none;
+    opacity:0.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-size:180px 180px;
+    animation:grainShift 1s steps(6) infinite;
+  }
+
+  @keyframes grainShift {
+    0%   { transform:translate(0,0); }
+    20%  { transform:translate(-3%,-5%); }
+    40%  { transform:translate(-6%,3%); }
+    60%  { transform:translate(4%,-3%); }
+    80%  { transform:translate(3%,5%); }
+    100% { transform:translate(0,0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .grain-overlay { animation:none; opacity:0.035; }
+  }
+
   /* ---------- NAVBAR ---------- */
   header {
     position:fixed;
@@ -151,13 +189,19 @@
     gap:36px;
   }
 
+  /* Por padrão o cabeçalho flutua sobre o Hero escuro, então o texto começa claro.
+     Ao rolar, o fundo do header vira um vidro branco e o texto escurece. */
   nav.menu a.nav-link {
     font-size:14.5px;
     font-weight:500;
-    color:var(--ink);
+    color:#fff;
     position:relative;
     padding:4px 0;
     transition:color .3s;
+  }
+
+  header.scrolled nav.menu a.nav-link {
+    color:var(--ink);
   }
 
   nav.menu a.nav-link::after {
@@ -235,6 +279,17 @@
     transform:translateY(-2px);
  }
 
+  /* O botão outline só é usado dentro do Hero (agora escuro): precisa de contraste claro */
+  .hero .btn-outline {
+    border-color:rgba(255,255,255,0.35);
+    color:#fff;
+  }
+
+  .hero .btn-outline:hover {
+    border-color:var(--orange-soft);
+    color:var(--orange-soft);
+  }
+
   .btn-ghost-light {
     background:rgba(255,255,255,0.18);
     border:1.5px solid rgba(255,255,255,0.5);
@@ -256,19 +311,28 @@
 
   .burger span {
     height:2px;
-    background:var(--ink);
+    background:#fff;
     border-radius:2px;
     transition:.3s;
 }
+
+  header.scrolled .burger span {
+    background:var(--ink);
+  }
 
   /* ---------- HERO ---------- */
   .hero {
     min-height:100vh;
     display:flex;align-items:center;
     padding:140px 0 90px;
-    background:linear-gradient(180deg, #FFFDFB 0%, var(--off-white) 100%);
+    background:
+        radial-gradient(ellipse 90% 55% at 12% -8%, rgba(245,124,50,0.22), transparent 62%),
+        radial-gradient(ellipse 75% 60% at 92% 108%, rgba(92,134,163,0.32), transparent 60%),
+        radial-gradient(ellipse 60% 45% at 50% 40%, rgba(169,201,220,0.08), transparent 70%),
+        linear-gradient(165deg, var(--ink-950) 0%, var(--ink-900) 52%, var(--ink-850) 100%);
     position:relative;
     overflow:hidden;
+    color:var(--on-dark);
   }
 
   /* Camada de formas flutuantes usada no parallax multi-camada do hero */
@@ -277,13 +341,14 @@
     inset:-10% -5%;
     z-index:0;
     pointer-events:none;
+    overflow:hidden;
   }
 
   .hero-shape {
     position:absolute;
     border-radius:50%;
     filter:blur(2px);
-    opacity:.5;
+    opacity:.6;
     animation:driftFloat 9s ease-in-out infinite;
   }
 
@@ -313,6 +378,68 @@
     50% { transform:translateY(-18px) scale(1.15); }
   }
 
+  /* Bokeh: círculos de luz desfocada, referência direta às lentes de câmera —
+     o "assinatura visual" do fundo do Hero e da seção de Serviços. */
+  .bokeh {
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(20px);
+    mix-blend-mode:screen;
+    animation:bokehFloat 11s ease-in-out infinite;
+  }
+
+  @keyframes bokehFloat {
+    0%,100% { transform:translateY(0) scale(1); opacity:.55; }
+    50%     { transform:translateY(-26px) scale(1.12); opacity:.85; }
+  }
+
+  .bokeh-1 { width:120px; height:120px; top:10%;  left:6%;  background:radial-gradient(circle, rgba(245,124,50,.55), transparent 70%); animation-delay:0s; }
+  .bokeh-2 { width:70px;  height:70px;  top:62%;  left:4%;  background:radial-gradient(circle, rgba(169,201,220,.55), transparent 70%); animation-delay:1.8s; }
+  .bokeh-3 { width:160px; height:160px; top:66%;  left:78%; background:radial-gradient(circle, rgba(92,134,163,.5), transparent 70%);  animation-delay:3.2s; }
+  .bokeh-4 { width:90px;  height:90px;  top:8%;   left:82%; background:radial-gradient(circle, rgba(251,174,121,.55), transparent 70%); animation-delay:.9s; }
+  .bokeh-5 { width:50px;  height:50px;  top:38%;  left:48%; background:radial-gradient(circle, rgba(255,255,255,.4), transparent 70%);   animation-delay:2.4s; }
+
+  .lens-flare {
+    position:absolute;
+    top:14%;
+    right:22%;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(255,255,255,.05) 35%, transparent 70%);
+    filter:blur(6px);
+    animation:flarePulse 6s ease-in-out infinite;
+    pointer-events:none;
+  }
+
+  @keyframes flarePulse {
+    0%,100% { opacity:.5; transform:scale(1); }
+    50%     { opacity:1;  transform:scale(1.15); }
+  }
+
+  /* Feixe de luz diagonal que varre o Hero lentamente, como um flash de estúdio */
+  .light-sweep {
+    position:absolute;
+    top:-40%;
+    left:-30%;
+    width:45%;
+    height:180%;
+    background:linear-gradient(100deg, transparent, rgba(255,255,255,.06) 45%, rgba(255,255,255,.1) 50%, rgba(255,255,255,.06) 55%, transparent);
+    transform:translateX(-120%) rotate(8deg);
+    animation:sweepMove 9s ease-in-out infinite;
+    pointer-events:none;
+  }
+
+  @keyframes sweepMove {
+    0%, 60%, 100% { transform:translateX(-120%) rotate(8deg); }
+    80%           { transform:translateX(220%) rotate(8deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-shape, .bokeh, .lens-flare, .light-sweep { animation:none; }
+  }
+
   .hero .wrap {
     display:grid;
     grid-template-columns:1.05fr 1fr;
@@ -322,11 +449,15 @@
     z-index:2;
   }
 
+  .hero-copy .eyebrow {
+    color:var(--blue-soft);
+  }
+
   .hero-copy h1 {
     font-size:clamp(38px,5vw,60px);
     font-weight:700;
     line-height:1.08;
-    color:var(--ink);
+    color:#fff;
     margin-bottom:22px;
   }
 
@@ -349,7 +480,7 @@
   .hero-copy p.lead {
     font-size:17.5px;
     line-height:1.7;
-    color:var(--ink-soft);
+    color:var(--on-dark-soft);
     max-width:480px;
     margin-bottom:36px;
   }
@@ -370,7 +501,7 @@
   .indicators li {
     font-size:13px;
     font-weight:600;
-    color:var(--ink-soft);
+    color:var(--on-dark-faint);
     display:flex;
     align-items:center;
   }
@@ -380,7 +511,7 @@
     width:5px;
     height:5px;
     border-radius:50%;
-    background:var(--blue-deep);
+    background:var(--blue);
     margin:0 16px;
     display:inline-block;
   }
@@ -396,8 +527,8 @@
     position:absolute;
     width:120%;height:120%;
     top:-10%;left:-14%;
-    background:var(--blue);
-    opacity:.55;
+    background:var(--blue-deep);
+    opacity:.4;
     border-radius:44% 56% 60% 40% / 50% 45% 55% 50%;
     z-index:0;
     animation:blobmove 14s var(--ease) infinite alternate;
@@ -418,7 +549,7 @@
     position:relative;z-index:1;
     border-radius:var(--radius);
     overflow:hidden;
-    box-shadow:var(--shadow-lg);
+    box-shadow:0 30px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06);
     aspect-ratio:4/5;
     transform-style:preserve-3d;
     transform:rotateX(var(--tiltX)) rotateY(var(--tiltY));
@@ -438,6 +569,26 @@
     transform:scale(1.12);
 }
 
+  /* Linhas de varredura sutis sobre a imagem do Hero — textura de "monitor de vídeo" */
+  .hero-imgbox-scan {
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    mix-blend-mode:overlay;
+    opacity:.5;
+    background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 4px);
+    animation:scanMove 7s linear infinite;
+  }
+
+  @keyframes scanMove {
+    0%   { background-position-y:0; }
+    100% { background-position-y:160px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-imgbox-scan { animation:none; }
+  }
+
   .hero-badge {
     position:absolute; 
     z-index:3; 
@@ -446,7 +597,7 @@
     background:#fff; 
     border-radius:18px; 
     padding:16px 20px;
-    box-shadow:var(--shadow-md);
+    box-shadow:0 24px 55px rgba(0,0,0,0.35);
     display:flex;align-items:center;gap:12px;
     animation:floaty 5s ease-in-out infinite;
     will-change:transform;
@@ -512,7 +663,7 @@
     font-size:11px;
     letter-spacing:.14em;
     text-transform:uppercase;
-    color:var(--ink-soft);
+    color:var(--on-dark-faint);
     z-index:2;
   }
 
@@ -593,14 +744,59 @@
   /* ---------- ABOUT ---------- */
   .about {
     padding:130px 0;
-    background:var(--white);
+    background:
+        radial-gradient(circle, rgba(32,41,58,0.05) 1px, transparent 1.4px) 0 0/28px 28px,
+        var(--white);
+    position:relative;
+    overflow:hidden;
 }
+
+  /* Glows suaves de marca atrás do conteúdo — deixam o fundo claro mais "vivo"
+     sem perder a legibilidade do texto. */
+  .about-bg {
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+
+  .about-bg .glow {
+    position:absolute;
+    border-radius:50%;
+    filter:blur(60px);
+    animation:glowDrift 16s ease-in-out infinite alternate;
+  }
+
+  .about-bg .glow-orange {
+    width:460px;height:460px;
+    top:-160px;right:-120px;
+    background:radial-gradient(circle, rgba(245,124,50,.16), transparent 70%);
+  }
+
+  .about-bg .glow-blue {
+    width:520px;height:520px;
+    bottom:-200px;left:-160px;
+    background:radial-gradient(circle, rgba(92,134,163,.16), transparent 70%);
+    animation-delay:2s;
+  }
+
+  @keyframes glowDrift {
+    0%   { transform:translate(0,0) scale(1); }
+    100% { transform:translate(24px,-18px) scale(1.08); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-bg .glow { animation:none; }
+  }
 
   .about .grid {
     display:grid;
     grid-template-columns:1fr 0.95fr;
     gap:64px;
     align-items:start;
+    position:relative;
+    z-index:1;
 }
 
   .about-cards {
@@ -745,9 +941,47 @@
   /* ---------- SERVICES ---------- */
   .services {
     padding:130px 0; 
-    background:var(--off-white); 
-    position:relative;
+    background:
+        radial-gradient(ellipse 70% 60% at 8% 8%, rgba(245,124,50,0.14), transparent 60%),
+        radial-gradient(ellipse 70% 65% at 95% 92%, rgba(92,134,163,0.28), transparent 60%),
+        linear-gradient(175deg, var(--ink-900) 0%, var(--ink-850) 100%);
+    color:var(--on-dark);
+    overflow:hidden;
 }
+
+  .services-bg {
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+
+  .services-bg .bokeh { filter:blur(26px); }
+
+  .bokeh-s1 { width:140px; height:140px; top:8%;  left:10%; background:radial-gradient(circle, rgba(245,124,50,.4), transparent 70%); animation-delay:.5s; }
+  .bokeh-s2 { width:100px; height:100px; top:70%; left:88%; background:radial-gradient(circle, rgba(169,201,220,.4), transparent 70%); animation-delay:2.1s; }
+  .bokeh-s3 { width:70px;  height:70px;  top:20%; left:82%; background:radial-gradient(circle, rgba(251,174,121,.4), transparent 70%); animation-delay:3.6s; }
+
+  /* Grade fina lembrando um storyboard / film-strip, referência direta ao trabalho audiovisual */
+  .services-grid-lines {
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 45%, #000 40%, transparent 85%);
+    mask-image:radial-gradient(ellipse 80% 70% at 50% 45%, #000 40%, transparent 85%);
+  }
+
+  .services .section-head h2 { color:#fff; }
+  .services .section-head .eyebrow { color:var(--blue-soft); }
+
+  .services .wrap {
+    position:relative;
+    z-index:1;
+  }
 
   .services-grid {
     display:grid;
@@ -756,31 +990,31 @@
 }
 
   .service-card {
-    background:#fff;
+    background:rgba(245,247,250,0.045);
     border-radius:var(--radius-sm); 
     padding:36px 30px;
-        border:1.5px solid rgba(169, 201, 220, .65);
-
-    box-shadow:0 10px 30px rgba(92,134,163,.08);
+    border:1.5px solid rgba(245,247,250,0.1);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
     transition:all .4s var(--ease);
   }
 
   .service-card:hover {
     transform:translateY(-8px);
-
     border-color:var(--orange);
-
+    background:rgba(245,247,250,0.07);
     box-shadow:
-        0 20px 40px rgba(92,134,163,.15),
-        0 8px 20px rgba(245,124,50,.10);
+        0 24px 48px rgba(0,0,0,.28),
+        0 8px 24px rgba(245,124,50,.18);
 }
 
   .service-icon {
     width:52px;
     height:52px;
     border-radius:14px;
-    background:#EEF6FB;
-    border:1px solid rgba(169,201,220,.6);
+    background:rgba(169,201,220,0.1);
+    border:1px solid rgba(169,201,220,.25);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -791,18 +1025,18 @@
   .service-icon svg {
     width:26px;
     height:26px;
-    stroke:var(--blue-deep); 
+    stroke:var(--blue-soft); 
     transition:stroke .4s var(--ease), transform .4s var(--ease);
 }
 
   .service-card:hover .service-icon { 
-    background:rgba(245,124,50,.12);
-    border-color:rgba(245,124,50,.35);
+    background:rgba(245,124,50,.16);
+    border-color:rgba(245,124,50,.4);
     transform:rotate(-8deg) scale(1.08);
 }
 
   .service-card:hover .service-icon svg {
-    stroke:var(--orange);
+    stroke:var(--orange-soft);
     transform:scale(1.08);
 }
 
@@ -810,11 +1044,12 @@
     font-size:18px;
     font-weight:600;
     margin-bottom:10px;
+    color:#fff;
 }
 
   .service-card p {
     font-size:14.5px;
-    color:var(--ink-soft);
+    color:var(--on-dark-soft);
     line-height:1.65;
 }
 
@@ -1090,7 +1325,7 @@
     position:absolute;
     inset:0;
     z-index:0;
-    background:linear-gradient(120deg, rgba(245,124,50,.08), rgba(169,201,220,.14), rgba(245,124,50,.08));
+    background:linear-gradient(120deg, rgba(245,124,50,.12), rgba(169,201,220,.2), rgba(245,124,50,.12));
     background-size:220% 220%;
     animation:gradientDrift 16s ease-in-out infinite;
     pointer-events:none;
@@ -1182,7 +1417,7 @@
   /* ---------- CTA ---------- */
   .cta{
     padding:120px 0;
-    background:linear-gradient(120deg, #ffffff 0%, #EAF2F7 55%, var(--blue) 130%);
+    background:linear-gradient(120deg, #ffffff 0%, #DCEAF2 55%, var(--blue-deep) 135%);
     text-align:center;
     position:relative;overflow:hidden;
   }
@@ -1192,7 +1427,7 @@
     width:520px;
     height:520px;
     border-radius:50%;
-    background:radial-gradient(circle, rgba(245,124,50,0.14), transparent 70%);
+    background:radial-gradient(circle, rgba(245,124,50,0.18), transparent 70%);
     top:-220px;
     right:-160px;
     animation:driftBlobSlow 10s ease-in-out infinite alternate;
