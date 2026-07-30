@@ -218,7 +218,7 @@ function layoutMasonry() {
         return;
     }
 
-    const gap = 22;
+    const gap = 36;
     const minColWidth = 260;
     const containerWidth = container.clientWidth;
     const cols = Math.max(1, Math.min(3, Math.floor((containerWidth + gap) / (minColWidth + gap))));
