@@ -1,5 +1,5 @@
 /* =========================================================
-   LINGERIE.CSS
+   FORMATURAS.CSS
    Extensão do style.css principal — reaproveita 100% dos
    tokens (:root), tipografia, cores, sombras e componentes
    já existentes (btn, eyebrow, reveal, section-head, cta,
@@ -117,98 +117,46 @@
     margin-bottom: 0;
 }
 
-/* ---------- INFORMAÇÕES DO EVENTO ---------- */
+/* ---------- STATS ---------- */
 .grad-stats {
     padding: 90px 0;
     background: var(--white);
-    overflow: hidden; /* evita que o parallax vaze para fora da seção */
 }
 
-.grad-info-grid {
+.grad-stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
-.grad-info-card {
-    --parallaxY: 0px;
-    --tiltX: 0deg;
-    --tiltY: 0deg;
-
-    position: relative;
-    z-index: 1;
-
-    display: flex;
-    align-items: center;
-    gap: 16px;
+.grad-stat-card {
     background: var(--off-white);
     border: 1px solid var(--line);
     border-radius: var(--radius-sm);
-    padding: 26px 22px;
-
-    will-change: transform;
-    transform: translateY(var(--parallaxY)) rotateX(var(--tiltX)) rotateY(var(--tiltY));
-    transition: transform .25s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease), z-index 0s;
+    padding: 32px 26px;
+    text-align: center;
+    transition: all .4s var(--ease);
 }
 
-.grad-info-card:hover {
-    z-index: 5;
-    transform: translateY(var(--parallaxY)) rotateX(var(--tiltX)) rotateY(var(--tiltY)) scale(1.02) translateY(-4px);
+.grad-stat-card:hover {
+    transform: translateY(-6px) scale(1.02);
     border-color: var(--orange);
     box-shadow: 0 16px 34px rgba(245,124,50,.16);
 }
 
-.grad-info-card .info-icon {
-    flex: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: rgba(245,124,50,.1);
-    animation: infoIconFloat 4.5s ease-in-out infinite;
-    transition: background .4s var(--ease);
-}
-
-.grad-info-card:hover .info-icon {
-    background: rgba(245,124,50,.16);
-}
-
-.grad-info-card .info-icon svg {
-    width: 26px;
-    height: 26px;
-    stroke: var(--orange);
-    fill: none;
-}
-
-/* delay escalonado para os ícones não flutuarem em sincronia */
-.grad-info-card:nth-child(2) .info-icon { animation-delay: .4s; }
-.grad-info-card:nth-child(3) .info-icon { animation-delay: .8s; }
-.grad-info-card:nth-child(4) .info-icon { animation-delay: 1.2s; }
-
-@keyframes infoIconFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50%      { transform: translateY(-6px) rotate(-4deg); }
-}
-
-.grad-info-card .info-text h5 {
+.grad-stat-card .num-big {
     font-family: 'Poppins', sans-serif;
-    font-size: 15px;
+    font-size: clamp(30px, 3.4vw, 40px);
     font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 4px;
-}
-
-.grad-info-card .info-text p {
-    font-size: 13.5px;
-    font-weight: 500;
     color: var(--orange);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .grad-info-card .info-icon { animation: none; }
-    .grad-info-card { transition: none; }
+.grad-stat-card .num-label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
 }
 
 /* ---------- FILTERS (usa .filter-tabs / .filter-btn originais) ---------- */
@@ -656,7 +604,7 @@
 
 /* ---------- RESPONSIVO ---------- */
 @media (max-width: 1024px) {
-    .grad-info-grid { grid-template-columns: repeat(2,1fr); }
+    .grad-stats-grid { grid-template-columns: repeat(2,1fr); }
     .grad-intro .grid { grid-template-columns: 1fr; }
     .grad-intro-media { order: -1; max-height: 380px; }
     .grad-featured-grid { grid-template-columns: 1fr; }
@@ -674,8 +622,8 @@
 
 @media (max-width: 560px) {
     .grad-filters-wrap { margin: -8px -20px 32px; padding: 8px 20px; }
-    .grad-info-grid { grid-template-columns: 1fr; gap: 12px; }
-    .grad-info-card { padding: 20px 18px; }
+    .grad-stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grad-stat-card { padding: 22px 16px; }
     .grad-backstage-grid { grid-template-columns: 1fr 1fr; }
     .grad-backstage-grid a:nth-child(2) img { margin-top: 0; }
     .grad-lightbox-prev, .grad-lightbox-next { width: 40px; height: 40px; }
