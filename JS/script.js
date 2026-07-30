@@ -1,3 +1,37 @@
+// ---------- Tema claro/escuro ----------
+// O tema já foi aplicado antes da renderização (script inline no <head>),
+// aqui só cuidamos da troca ao clicar e de salvar a preferência.
+(function () {
+    const root = document.documentElement;
+    const toggles = [
+        document.getElementById('themeToggle'),
+        document.getElementById('themeToggleMobile')
+    ].filter(Boolean);
+
+    function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        localStorage.setItem('hod-theme', theme);
+        toggles.forEach(btn => btn.setAttribute('aria-pressed', theme === 'dark'));
+    }
+
+    toggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        });
+    });
+
+    // Se o usuário nunca escolheu um tema manualmente, acompanha mudanças
+    // na preferência do sistema operacional em tempo real.
+    if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('hod-theme')) {
+                root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        });
+    }
+})();
+
 // Navbar scroll behavior
 const header = document.getElementById('siteHeader');
 window.addEventListener('scroll', () => {
