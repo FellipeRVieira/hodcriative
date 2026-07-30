@@ -2,7 +2,9 @@
    FORMATURAS.JS
    Reaproveita o mesmo motor de Reveal / Masonry / Filtros já
    usado na Home (mesma lógica, adaptada para a galeria desta
-   página) e adiciona o Lightbox exclusivo do catálogo.
+   página) e adiciona o Lightbox exclusivo do catálogo, além
+   do parallax de scroll e tilt no mouse dos cards de
+   Informações do evento.
    Vanilla JS puro, sem dependências externas.
    ========================================================= */
 
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    applyStagger('.grad-stats-grid', 70);
+    applyStagger('.grad-info-grid', 70);
     applyStagger('.grad-process-line', 90);
     applyStagger('.grad-backstage-grid', 70);
 
@@ -123,6 +125,64 @@ document.addEventListener('DOMContentLoaded', () => {
     if (featMain && featSideVideos.length && !isTouch) {
         featMain.addEventListener('mouseenter', () => featSideVideos.forEach(v => v.pause()));
         featMain.addEventListener('mouseleave', () => featSideVideos.forEach(v => v.play().catch(() => {})));
+    }
+
+    /* ---------- Parallax de scroll + tilt no mouse — Informações do evento ---------- */
+    const infoCards = document.querySelectorAll('.grad-info-card');
+
+    if (infoCards.length && !prefersReducedMotion) {
+
+        // Parallax vertical ao rolar a página (velocidades diferentes por card)
+        function parallaxInfoCards() {
+            const viewportH = window.innerHeight;
+
+            infoCards.forEach((card, i) => {
+                const rect = card.getBoundingClientRect();
+                const center = rect.top + rect.height / 2;
+                const distFromCenter = (center - viewportH / 2) / viewportH;
+
+                const speed = 14 + (i % 2) * 6; // varia entre os cards
+                const y = distFromCenter * speed;
+
+                card.style.setProperty('--parallaxY', `${y}px`);
+            });
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    parallaxInfoCards();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        window.addEventListener('load', parallaxInfoCards);
+        window.addEventListener('resize', parallaxInfoCards);
+        parallaxInfoCards();
+
+        // Tilt 3D sutil no mouse (apenas desktop)
+        if (!isTouch) {
+            infoCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    const rotateX = (-y / rect.height) * 8;
+                    const rotateY = (x / rect.width) * 8;
+
+                    card.style.setProperty('--tiltX', `${rotateX}deg`);
+                    card.style.setProperty('--tiltY', `${rotateY}deg`);
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.setProperty('--tiltX', '0deg');
+                    card.style.setProperty('--tiltY', '0deg');
+                });
+            });
+        }
     }
 
     /* ---------- Lightbox ---------- */
