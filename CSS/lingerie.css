@@ -333,7 +333,7 @@
     align-items: center;
     gap: 8px;
     background: #fff;
-    color: var(--ink);
+    color: #14181f; /* fixo, em vez de var(--ink) */
     font-size: 12.5px;
     font-weight: 600;
     padding: 8px 16px;
@@ -343,6 +343,7 @@
     opacity: 0;
     transition: all .4s var(--ease) .05s;
 }
+
 
 .grad-item:hover .view-btn { transform: translateY(0); opacity: 1; }
 
@@ -686,4 +687,25 @@
     .grad-item .overlay { opacity: 1; }
     .grad-item .view-btn { opacity: 1; transform: translateY(0); }
     .grad-item[data-type="video"] .play-btn { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+}
+
+
+/* ---------- HEADER (ajuste específico desta página) ----------
+   Nas outras páginas o header fica sobre um Hero escuro no topo, então o
+   menu nasce branco (#fff) e só escurece com a classe .scrolled, ao rolar.
+   Aqui não existe esse Hero escuro logo abaixo do header — a .breadcrumb
+   (clara no tema claro) fica exposta desde o início — então o menu precisa
+   usar a cor do tema (var(--ink)) já no estado inicial, e não o branco fixo. */
+#siteHeader nav.menu a.nav-link{
+    color: var(--ink);
+}
+
+#siteHeader .theme-toggle:not(.theme-toggle-mobile){
+    background: rgba(32,41,58,0.06);
+    border-color: var(--line);
+    color: var(--ink);
+}
+
+#siteHeader .burger span{
+    background: var(--ink);
 }

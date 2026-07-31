@@ -13,6 +13,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+
+<!-- Aplica o tema salvo (ou a preferência do sistema) ANTES da renderização,
+     para evitar o "flash" de tema claro ao carregar a página. -->
+<script>
+    (function () {
+        var saved = localStorage.getItem('hod-theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+</script>
+
 </head>
 <body>
 
@@ -32,6 +43,17 @@
                     <li><a class="nav-link" href="index.html#projetos">Projetos</a></li>
                     <li><a class="nav-link" href="index.html#contato">Contato</a></li>
                 </ul>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="4.2"/>
+                        <path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/>
+                    </svg>
+                </button>
+
                 <a href="index.html#contato" class="btn btn-primary">Solicitar orçamento</a>
             </nav>
 
@@ -585,6 +607,7 @@
         </button>
     </div>
 
+    <script src="JS/theme.js"></script>
     <script src="JS/lingerie.js"></script>
 
 </body>

@@ -1,7 +1,7 @@
 // ---------- Tema claro/escuro ----------
 // O tema já foi aplicado antes da renderização (script inline no <head>),
 // aqui só cuidamos da troca ao clicar e de salvar a preferência.
-(function () {
+/*(function () {
     const root = document.documentElement;
     const toggles = [
         document.getElementById('themeToggle'),
@@ -30,7 +30,7 @@
             }
         });
     }
-})();
+})();*/
 
 // Navbar scroll behavior
 const header = document.getElementById('siteHeader');

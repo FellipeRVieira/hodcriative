@@ -13,8 +13,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+<!-- Aplica o tema salvo (ou a preferência do sistema) ANTES da renderização,
+     para evitar o "flash" de tema claro ao carregar a página. -->
+<script>
+    (function () {
+        var saved = localStorage.getItem('hod-theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+</script>
+
 </head>
 <body>
+
+    <!-- GRAIN / TEXTURA CINEMATOGRÁFICA GLOBAL -->
+    <div class="grain-overlay" aria-hidden="true"></div>
 
     <!-- NAVBAR (idêntica à Home) -->
     <header id="siteHeader">
@@ -32,6 +45,17 @@
                     <li><a class="nav-link" href="index.html#projetos">Projetos</a></li>
                     <li><a class="nav-link" href="index.html#contato">Contato</a></li>
                 </ul>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="4.2"/>
+                        <path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/>
+                    </svg>
+                </button>
+
                 <a href="index.html#contato" class="btn btn-primary">Solicitar orçamento</a>
             </nav>
 
@@ -49,6 +73,18 @@
         <a href="index.html#servicos">Serviços</a>
         <a href="index.html#projetos">Projetos</a>
         <a href="index.html#contato">Contato</a>
+
+        <button class="theme-toggle theme-toggle-mobile" id="themeToggleMobile" aria-label="Alternar tema claro/escuro">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="4.2"/>
+                <path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/>
+                </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/>
+            </svg>
+            <span>Tema</span>
+        </button>
+
         <a href="index.html#contato" class="btn btn-primary">Solicitar orçamento</a>
     </div>
 
@@ -88,7 +124,7 @@
                 O começo de muitos sonhos.</h1>
 
             <p class="lead">A formatura da Lyvia marcou o encerramento de uma trajetória construída com dedicação e o início de uma 
-                nova etapa. Entre sorrisos, abraços e muita emoção, registramos cada instante desse dia para transformá-lo em 
+                nova etapa. Registramos cada instante desse dia para transformá-lo em 
                 lembranças que permanecerão para sempre.</p>
 
             <div class="hero-actions">
@@ -182,7 +218,7 @@
                 </div>
 
                 <div class="grad-intro-media reveal">
-                    <img src="IMG/camera.jpeg" alt="Fotógrafo registrando cerimônia de formatura" loading="lazy" decoding="async">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80" alt="Fotógrafo registrando cerimônia de formatura" loading="lazy" decoding="async">
                 </div>
 
             </div>
@@ -546,7 +582,8 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
         </button>
     </div>
-
+    
+    <script src="JS/theme.js"></script>
     <script src="JS/formaturas.js"></script>
 
 </body>
