@@ -37,6 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+    if (!prefersReducedMotion && !isTouch) {
+        document.querySelectorAll('[data-intro-parallax]').forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - .5;
+                const y = (e.clientY - rect.top) / rect.height - .5;
+                el.style.transform = `perspective(900px) translate3d(${x * 9}px, ${y * 9}px, 0) rotateX(${-y * 3}deg) rotateY(${x * 3}deg)`;
+            });
+            el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+        });
+    }
+
     /* ---------- Masonry inteligente da galeria (mesmo algoritmo do index) ---------- */
     function layoutMasonry(containerSelector, itemSelector) {
         const container = document.querySelector(containerSelector);
