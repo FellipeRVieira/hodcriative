@@ -45,6 +45,8 @@
 <!-- GRAIN / TEXTURA CINEMATOGRÁFICA GLOBAL -->
 <div class="grain-overlay" aria-hidden="true"></div>
 
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <!-- NAVBAR -->
 <header id="siteHeader">
     <div class="wrap">
@@ -131,8 +133,11 @@
                 HOD Creative
             </span>
 
-                <h1>Criamos <span class="accent">Marcas</span><br>Registramos
-                     <span class="accent">histórias</span>.
+                <h1>
+                    <span class="word" style="animation-delay:.05s">Criamos</span>
+                    <span class="word accent" style="animation-delay:.15s">Marcas</span><br>
+                    <span class="word" style="animation-delay:.25s">Registramos</span>
+                    <span class="word accent" style="animation-delay:.35s">histórias</span>.
                 </h1>
 <!--
             <p class="lead">
@@ -283,78 +288,74 @@
             <h2>Da produção visual ao site pronto</h2>
         </div>
  
-        <div class="services-grid">
- 
-            <div class="service-card reveal">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
-                        <path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/>
-                        <circle cx="12" cy="13" r="3.5"/>
-                    </svg>
-                </div>
-                <h4>Fotografia</h4>
-                <p>Ensaios, eventos e fotografia comercial — material pronto para redes sociais e para o seu site.</p>
-            </div>
- 
-            <div class="service-card reveal">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
-                        <path d="M15 10l5-3v10l-5-3"/>
-                        <rect x="2" y="6" width="13" height="12" rx="2"/>
-                        </svg>
-                    </div>
-                    <h4>Produção de Vídeo</h4>
-                    <p>Vídeos institucionais, de eventos e para redes sociais, com identidade visual cinematográfica.</p>
-                </div>
- 
-            <div class="service-card reveal">
- 
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
-                        <rect x="6" y="2" width="12" height="20" rx="2.5"/>
-                        <path d="M11 19h2"/>
-                    </svg>
-                </div>
-                <h4>Conteúdo para Instagram</h4>
-                <p>Organizamos e produzimos o conteúdo do seu Instagram, com planejamento visual e postagens estratégicas.</p>
-            </div>
- 
-            <div class="service-card reveal">
- 
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
-                        <rect x="3" y="4" width="18" height="13" rx="2"/>
-                        <path d="M8 21h8M12 17v4"/>
-                    </svg>
-                </div>
-                <h4>Desenvolvimento Web</h4>
-                <p>Sites rápidos, modernos e responsivos, construídos com fotos e vídeos feitos sob medida para sua marca.</p>
-            </div>
- 
-            <div class="service-card reveal">
- 
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
-                        <circle cx="12" cy="12" r="9"/>
-                        <path d="M3 12h18M12 3a13 13 0 010 18 13 13 0 010-18z"/>
-                    </svg>
-                </div>
-                <h4>Landing Pages e Formulários</h4>
-                <p>Páginas focadas em conversão, com formulários personalizados para captar clientes.</p>
-            </div>
- 
-            <div class="service-card reveal">
- 
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
-                        <path d="M12 2l2.5 6.5L21 9l-5 4.5 1.5 7L12 17l-5.5 3.5L8 13.5 3 9l6.5-.5z"/>
-                    </svg>
-                </div>
-                <h4>Pacotes Completos</h4>
-                <p>Fotografamos e filmamos sua empresa, e usamos esse conteúdo para criar seu site do zero.</p>
-            </div>
- 
+       <div class="services-grid">
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <path pathLength="100" d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/>
+                <circle pathLength="100" cx="12" cy="13" r="3.5"/>
+            </svg>
         </div>
+        <h4>Fotografia</h4>
+        <p>Ensaios, eventos e fotografia comercial — material pronto para redes sociais e para o seu site.</p>
+    </div>
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <path pathLength="100" d="M15 10l5-3v10l-5-3"/>
+                <rect pathLength="100" x="2" y="6" width="13" height="12" rx="2"/>
+            </svg>
+        </div>
+        <h4>Produção de Vídeo</h4>
+        <p>Vídeos institucionais, de eventos e para redes sociais, com identidade visual cinematográfica.</p>
+    </div>
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <rect pathLength="100" x="6" y="2" width="12" height="20" rx="2.5"/>
+                <path pathLength="100" d="M11 19h2"/>
+            </svg>
+        </div>
+        <h4>Conteúdo para Instagram</h4>
+        <p>Organizamos e produzimos o conteúdo do seu Instagram, com planejamento visual e postagens estratégicas.</p>
+    </div>
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <rect pathLength="100" x="3" y="4" width="18" height="13" rx="2"/>
+                <path pathLength="100" d="M8 21h8M12 17v4"/>
+            </svg>
+        </div>
+        <h4>Desenvolvimento Web</h4>
+        <p>Sites rápidos, modernos e responsivos, construídos com fotos e vídeos feitos sob medida para sua marca.</p>
+    </div>
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <circle pathLength="100" cx="12" cy="12" r="9"/>
+                <path pathLength="100" d="M3 12h18M12 3a13 13 0 010 18 13 13 0 010-18z"/>
+            </svg>
+        </div>
+        <h4>Landing Pages e Formulários</h4>
+        <p>Páginas focadas em conversão, com formulários personalizados para captar clientes.</p>
+    </div>
+
+    <div class="service-card reveal">
+        <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                <path pathLength="100" d="M12 2l2.5 6.5L21 9l-5 4.5 1.5 7L12 17l-5.5 3.5L8 13.5 3 9l6.5-.5z"/>
+            </svg>
+        </div>
+        <h4>Pacotes Completos</h4>
+        <p>Fotografamos e filmamos sua empresa, e usamos esse conteúdo para criar seu site do zero.</p>
+    </div>
+
+</div>
  
     </div>
 </section>
@@ -385,7 +386,7 @@
         </div>
 
         <div class="masonry">
-
+<!--
             <div class="proj-item reveal" data-category="audiovisual">
                 <span class="cat-badge">Audiovisual</span>
                 <img src="IMG/camera.jfif.jpeg" alt="Projeto audiovisual">
@@ -402,7 +403,7 @@
                     <a class="view-btn" href="#">Ver Projeto</a>
                 </div>
 
-            </div>
+            </div>-->
 
             <div class="proj-item reveal" data-category="audiovisual">
                 <span class="cat-badge">Fotografia</span>
@@ -415,7 +416,7 @@
                 </div>
 
             </div>
-
+<!--
             <div class="proj-item reveal" data-category="web">
                 <span class="cat-badge">Web</span>
                 <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=700&q=80" alt="Website">
@@ -426,9 +427,9 @@
                     <a class="view-btn" href="#">Ver Projeto</a>
                 </div>
 
-            </div>
-
-            <div class="proj-item reveal" data-category="audiovisual">
+            </div>-->
+            
+          <div class="proj-item reveal" data-category="audiovisual">
                 <span class="cat-badge">Audiovisual</span>
 
                 <div class="video-wrapper crop" style="--ratio:177.78%">
@@ -477,7 +478,7 @@
                 </div>
 
             </div>
-
+<!--
             <div class="proj-item reveal" data-category="web">
                 <span class="cat-badge">Web</span>
                 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80" alt="Landing page">
@@ -488,7 +489,7 @@
                     <a class="view-btn" href="https://fellipervieira.github.io/portfolio_lp/">Ver Projeto</a>
                 </div>
 
-            </div>
+            </div>-->
 
         </div>
     </div>
@@ -745,7 +746,7 @@
         </span>
         <h2>Vamos tirar seu projeto do papel?</h2>
         <p>Conte sua ideia e nós cuidamos do resto.</p>
-        <a href="#contato" class="btn btn-primary btn-magnetic">Solicitar orçamento</a>
+        <a href="#contato" class="btn btn-primary btn-magnetic btn-pulse">Solicitar orçamento</a>
     </div>
 
 </section>

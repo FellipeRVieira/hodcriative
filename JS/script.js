@@ -347,3 +347,70 @@ document.querySelectorAll('.faq-item').forEach(item => {
         }
     });
 });
+
+// ---------- Diferenciais: número animado + spotlight por card ----------
+(function () {
+    const cards = document.querySelectorAll('.diff-card');
+    if (!cards.length) return;
+
+    // Cria o número animado (substitui o antigo ::after com counter())
+    cards.forEach((card, i) => {
+        const num = document.createElement('span');
+        num.className = 'diff-num';
+        num.textContent = '00';
+        num.dataset.target = String(i + 1).padStart(2, '0');
+        card.prepend(num);
+    });
+
+    // Contador sobe de 0 até o número final quando o card entra na tela
+    const countIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const numEl = entry.target.querySelector('.diff-num');
+            countIO.unobserve(entry.target);
+            if (!numEl) return;
+
+            const target = parseInt(numEl.dataset.target, 10);
+            if (prefersReducedMotion) {
+                numEl.textContent = String(target).padStart(2, '0');
+                return;
+            }
+
+            const duration = 900;
+            const start = performance.now();
+
+            function tick(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(eased * target);
+                numEl.textContent = String(current).padStart(2, '0');
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        });
+    }, { threshold: 0.3 });
+
+    cards.forEach(card => countIO.observe(card));
+
+    // Spotlight que segue o mouse dentro de cada card
+    if (!prefersReducedMotion && !isTouch) {
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+            });
+        });
+    }
+})();
+
+
+const scrollProgress = document.getElementById('scrollProgress');
+function updateScrollProgress(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    if (scrollProgress) scrollProgress.style.width = pct + '%';
+}
+window.addEventListener('scroll', updateScrollProgress);
+window.addEventListener('load', updateScrollProgress);
