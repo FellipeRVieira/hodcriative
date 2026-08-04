@@ -725,14 +725,6 @@ header.scrolled .burger span{background:var(--ink);}
     50%     { transform:scale(1.06); }
 }
 
-/* Linha embaixo do ícone, fecha o "sanduíche" com a linha do topo */
-.diff-icon::after{
-    content:"";position:absolute;bottom:-30px;left:50%;translate:-50% 0;
-    width:0;height:2px;background:var(--accent, var(--orange));
-    transition:width .5s ease .1s;
-}
-.diff-card:hover .diff-icon::after{width:34px;}
-
 .diff-icon svg{width:26px;height:26px;stroke:var(--accent, var(--orange));transition:stroke .3s;}
 
 .diff-card h4{position:relative;z-index:1;font-size:17px;font-weight:600;margin-bottom:8px;margin-top:10px;}
