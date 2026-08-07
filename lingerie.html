@@ -27,7 +27,7 @@
 </head>
 <body>
 
-    <!-- NAVBAR (idêntica à Home) -->
+    <!-- NAVBAR (específica desta página de projeto) -->
     <header id="siteHeader">
         <div class="wrap">
 
@@ -37,11 +37,10 @@
 
             <nav class="menu">
                 <ul>
-                    <li><a class="nav-link" href="index.html#home">Home</a></li>
-                    <li><a class="nav-link" href="index.html#sobre">Sobre</a></li>
-                    <li><a class="nav-link" href="index.html#servicos">Serviços</a></li>
-                    <li><a class="nav-link" href="index.html#projetos">Projetos</a></li>
-                    <li><a class="nav-link" href="index.html#contato">Contato</a></li>
+                    <li><a class="nav-link" href="index.html#home">Voltar</a></li>
+                    <li><a class="nav-link" href="#gradGallery">Galeria</a></li>
+                    <li><a class="nav-link" href="#gradProcess">Como funciona</a></li>
+                    <li><a class="nav-link" href="index.html#projetos">Outros projetos</a></li>
                 </ul>
 
                 <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
@@ -66,16 +65,15 @@
 
     <div class="mobile-panel" id="mobilePanel">
         <button class="close-btn" id="closeBtn">&times;</button>
-        <a href="index.html#home">Home</a>
-        <a href="index.html#sobre">Sobre</a>
-        <a href="index.html#servicos">Serviços</a>
-        <a href="index.html#projetos">Projetos</a>
-        <a href="index.html#contato">Contato</a>
+        <a href="index.html#home">Voltar</a>
+        <a href="#gradGallery">Galeria</a>
+        <a href="#gradProcess">Como funciona</a>
+        <a href="index.html#projetos">Outros projetos</a>
         <a href="index.html#contato" class="btn btn-primary">Solicitar orçamento</a>
     </div>
 
     <!-- BREADCRUMB -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
+    <nav class="breadcrumb" aria-label="Breadcrumb" id="gradInicio">
         <div class="wrap">
             <a href="index.html#home">Home</a>
             <span class="sep">/</span>
@@ -182,7 +180,7 @@
     </section>
 
     <!-- INTRODUÇÃO -->
-    <section class="grad-intro">
+    <section class="grad-intro" id="gradHistoria">
         <div class="wrap">
             <div class="grid">
 
@@ -340,74 +338,8 @@
     </section>
 
 
-    <!-- DEPOIMENTOS 
-    <section class="grad-testi">
-        <div class="wrap">
-            <div class="section-head reveal">
-                <span class="eyebrow">
-                    <img src="IMG/icon.svg" alt="" class="eyebrow-icon">
-                    Depoimentos
-                </span>
-                <h2>O que dizem sobre a cobertura</h2>
-            </div>
-        </div>
-
-        <div class="grad-testi-track" aria-label="Depoimentos de clientes">
-
-            <div class="grad-testi-card">
-                <div class="grad-testi-stars">★★★★★</div>
-                <p>"Cada detalhe do meu chá ficou eternizado com muito carinho. As fotos capturaram exatamente o clima da festa."</p>
-                <div class="grad-testi-who"><b>Isabel Fonseca</b><span>Chá de Lingerie — 2026</span></div>
-            </div>
-
-            <div class="grad-testi-card">
-                <div class="grad-testi-stars">★★★★★</div>
-                <p>"O vídeo da decoração ficou tão bonito que assistimos várias vezes com as amigas. Emocionante."</p>
-                <div class="grad-testi-who"><b>Camila Ferreira</b><span>Chá de Lingerie — 2025</span></div>
-            </div>
-
-            <div class="grad-testi-card">
-                <div class="grad-testi-stars">★★★★★</div>
-                <p>"Profissionalismo do início ao fim. Nos sentimos à vontade o tempo todo diante das câmeras."</p>
-                <div class="grad-testi-who"><b>Marina Souza</b><span>Chá de Lingerie — 2026</span></div>
-            </div>
-
-            <div class="grad-testi-card">
-                <div class="grad-testi-stars">★★★★★</div>
-                <p>"Entrega rápida, edição impecável e um olhar muito sensível para os bastidores. Recomendo de olhos fechados."</p>
-                <div class="grad-testi-who"><b>Rafaela Lima</b><span>Chá de Lingerie — 2025</span></div>
-            </div>-->
-
-            <!-- duplicado para o loop contínuo do carrossel 
-            <div class="grad-testi-card" aria-hidden="true">
-                <div class="grad-testi-stars">★★★★★</div>
-                <p>"Cada detalhe do meu chá ficou eternizado com muito carinho. As fotos capturaram exatamente o clima da festa."</p>
-                <div class="grad-testi-who"><b>Isabel Fonseca</b><span>Chá de Lingerie — 2026</span></div>
-            </div>
-
-            <div class="grad-testi-card" aria-hidden="true">
-                <div class="grad-testi-stars">★★★★★</div>
-                <p>"O vídeo da decoração ficou tão bonito que assistimos várias vezes com as amigas. Emocionante."</p>
-                <div class="grad-testi-who"><b>Camila Ferreira</b><span>Chá de Lingerie — 2025</span></div>
-            </div>
-
-            <div class="grad-testi-card" aria-hidden="true">
-                <div class="grad-testi-stars">★★★★★</div>
-                <p>"Profissionalismo do início ao fim. Nos sentimos à vontade o tempo todo diante das câmeras."</p>
-                <div class="grad-testi-who"><b>Marina Souza</b><span>Chá de Lingerie — 2026</span></div>
-            </div>
-
-            <div class="grad-testi-card" aria-hidden="true">
-                <div class="grad-testi-stars">★★★★★</div>
-                <p>"Entrega rápida, edição impecável e um olhar muito sensível para os bastidores. Recomendo de olhos fechados."</p>
-                <div class="grad-testi-who"><b>Rafaela Lima</b><span>Chá de Lingerie — 2025</span></div>
-            </div>
-
-        </div>
-    </section>-->
-
     <!-- PROCESSO -->
-    <section class="grad-process">
+    <section class="grad-process" id="gradProcess">
         <div class="wrap">
 
             <div class="section-head reveal">
@@ -471,7 +403,7 @@
 
     </section>
 
-    <!-- FOOTER (idêntico à Home) -->
+    <!-- FOOTER -->
     <footer>
         <div class="wrap">
 
@@ -514,15 +446,15 @@
                 <div class="footer-col">
                     <h5>Menu</h5>
                     <ul>
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="index.html#sobre">Sobre</a></li>
-                        <li><a href="index.html#servicos">Serviços</a></li>
-                        <li><a href="index.html#projetos">Projetos</a></li>
+                        <li><a href="lingerie.html#gradInicio">Início</a></li>
+                        <li><a href="lingerie.html#gradHistoria">Sobre</a></li>
+                        <li><a href="lingerie.html#gradGallery">Galeria</a></li>
+                        <li><a href="lingerie.html#gradProcess">Processo</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
-                    <h5>Serviços</h5>
+                    <h5>Chá de Lingerie</h5>
                     <ul>
                         <li><a href="index.html#servicos">Audiovisual</a></li>
                         <li><a href="index.html#servicos">Fotografia</a></li>
